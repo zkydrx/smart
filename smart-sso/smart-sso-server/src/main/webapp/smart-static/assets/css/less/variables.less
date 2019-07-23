@@ -1,30 +1,28 @@
 //basic variables
-@icon: ace-icon;//the icon class to be used. For more info please refer to docs, the "icons" section
+@icon: ace-icon; //the icon class to be used. For more info please refer to docs, the "icons" section
 
 
 @base-font-size: 13px;
 @baseFontSize: @base-font-size;
 @sansFontFamily: "Open Sans";
 
-@import "fonts.less";//font sizes
+@import "fonts.less"; //font sizes
 
 
-@screen-topbar-down:         479px;//The point to move top menu buttons down in default layout
-@screen-topbar-down-min:	(@screen-topbar-down + 1);//!ignore
+@screen-topbar-down: 479px; //The point to move top menu buttons down in default layout
+@screen-topbar-down-min: (@screen-topbar-down + 1); //!ignore
 @screen-topbar-down-small: 360px; //!ignore
 
-@screen-qhd-width: 540px;//!ignore
-@screen-tiny:	320px;//!ignore
-@screen-tiny-max: (@screen-xs-min - 1);//!ignore
-@screen-mini:	240px;//!ignore
-@screen-mini-max: (@screen-tiny - 1);//!ignore
+@screen-qhd-width: 540px; //!ignore
+@screen-tiny: 320px; //!ignore
+@screen-tiny-max: (@screen-xs-min - 1); //!ignore
+@screen-mini: 240px; //!ignore
+@screen-mini-max: (@screen-tiny - 1); //!ignore
 
 
-
-@screen-fixed-breadcrumbs: @grid-float-breakpoint;//minimum width for fixed breadcrumbs
-@screen-hover-menu: @grid-float-breakpoint;//minimum width for .hover submenus
+@screen-fixed-breadcrumbs: @grid-float-breakpoint; //minimum width for fixed breadcrumbs
+@screen-hover-menu: @grid-float-breakpoint; //minimum width for .hover submenus
 @screen-compact-menu: @screen-hover-menu;
-
 
 
 //general.less variables
@@ -32,11 +30,10 @@
 @text-color: #393939;
 
 
-
-@ace-nav-default: #2E6589;//ace nav button default background color
+@ace-nav-default: #2E6589; //ace nav button default background color
 @ace-nav-blue: #2E6589;
-@ace-nav-grey: #555;//ace nav button grey background color
-@ace-nav-purple: #892E65;//ace nav button purple background color
+@ace-nav-grey: #555; //ace nav button grey background color
+@ace-nav-purple: #892E65; //ace nav button purple background color
 @ace-nav-green: #2E8965;
 @ace-nav-red: #B74635;
 @ace-nav-light-green: #9ABC32;
@@ -46,17 +43,17 @@
 @ace-nav-light-blue2: #42A8E1;
 @ace-nav-light-pink: #F4DAE5;
 @ace-nav-dark: #404040;
-@ace-nav-white-opaque: rgba(255,255,255,0.8);
-@ace-nav-dark-opaque: rgba(0,0,0,0.2);
+@ace-nav-white-opaque: rgba(255, 255, 255, 0.8);
+@ace-nav-dark-opaque: rgba(0, 0, 0, 0.2);
 
 
-@navbar-min-height: 45px;//navbar's min-height
+@navbar-min-height: 45px; //navbar's min-height
 @navbar-dropdown-width: 240px;
 @navbar-dropdown-shadow: ~"0 2px 4px rgba(30, 30, 100, 0.25)";
 
 
 @sidebar-width: 190px;
-@sidebar-min-width: 43px;//sidebar minimum width
+@sidebar-min-width: 43px; //sidebar minimum width
 @sidebar-compact-width: 105px;
 @nav-item-height: 39px;
 
@@ -68,11 +65,6 @@
 @breadcrumb-height: 41px;
 @breadcrumb-arrow-color: #B2B6BF;
 @page-content-padding-top: 8px;
-
-
-
-
-
 
 
 //some text colors
@@ -91,10 +83,9 @@
 @ace-purple: #A069C3;
 @ace-pink: #C6699F;
 @ace-pink2: #D6487E;
-@ace-brown:brown;
+@ace-brown: brown;
 @ace-grey: #777;
 @ace-light-grey: #BBB;
-
 
 
 //button colors
@@ -146,8 +137,6 @@
 @btn-link-color: #0088CC;
 
 
-
-
 //application button colors
 @btn-app-default-1: #BCC9D5;
 @btn-app-default-2: #ABBAC3;
@@ -192,41 +181,38 @@
 @btn-app-light-active: #515151;
 
 
-
-
 //label & badge colors
 @label-default: #ABBAC3;
-@label-primary:@btn-primary;
+@label-primary: @btn-primary;
 @label-info: #3A87AD;
 @label-success: #82AF6F;
 @label-danger: #D15B47;
-@label-important:@label-danger;//!ignore
+@label-important: @label-danger; //!ignore
 @label-warning: #F89406;
 @label-inverse: #333333;
 @label-pink: #D6487E;
 @label-purple: #9585BF;
 @label-yellow: #FEE188;
 @label-light: #E7E7E7;
-@label-grey:@btn-grey;
-
+@label-grey: @btn-grey;
 
 
 //menu colors
 @dropdown-menu: #4F99C6;
-@dropdown-default:@btn-default;
-@dropdown-primary:@btn-primary;
-@dropdown-info:@btn-info;
-@dropdown-success:@btn-success;
+@dropdown-default: @btn-default;
+@dropdown-primary: @btn-primary;
+@dropdown-info: @btn-info;
+@dropdown-success: @btn-success;
 @dropdown-warning: #FFA24D;
-@dropdown-danger:@btn-danger;
-@dropdown-inverse:@btn-inverse;
-@dropdown-pink:@btn-pink;
-@dropdown-purple:@btn-purple;
-@dropdown-grey:@btn-grey;
-@dropdown-light:@btn-light;
+@dropdown-danger: @btn-danger;
+@dropdown-inverse: @btn-inverse;
+@dropdown-pink: @btn-pink;
+@dropdown-purple: @btn-purple;
+@dropdown-grey: @btn-grey;
+@dropdown-light: @btn-light;
 @dropdown-lighter: #EFEFEF;
 @dropdown-lightest: #F3F3F3;
-@dropdown-yellow:@btn-yellow;
+@dropdown-yellow: @btn-yellow;
 @dropdown-yellow2: #F9E8B3;
 @dropdown-light-blue: #ECF3F9;
 
@@ -237,7 +223,7 @@
 @slider-purple: #AC68BA;
 @slider-orange: #EFAD62;
 @slider-dark: #606060;
-@slider-pink:@btn-pink;
+@slider-pink: @btn-pink;
 
 
 //infobox colors
@@ -279,8 +265,6 @@
 @widget-orange-border: #E8B10D;
 
 
-
-
 //form
 @help-button-bg: #65BCDA;
 @input-border: #D5D5D5;
@@ -293,13 +277,11 @@
 //@input-shadow-focus:~"0px 0px 0px 2px rgba(245, 153, 66, 0.3)";
 
 
-
 //tabs & accordion
 @tab-border: #C5D0DC;
 @tab-active-color: #576373;
 @tab-active-border: #4C8FBD;
 @tab-hover-color: #4C8FBD;
-
 
 
 //tooltip
@@ -322,13 +304,9 @@
 @progress-grey: #8A8A8A;
 
 
-
-
-
 //widget
-@widget-header-color: #669FC7;//text color
+@widget-header-color: #669FC7; //text color
 @tag-bg: #91B8D0;
-
 
 
 //items
@@ -338,15 +316,15 @@
 @item-list-red2-border: #D15B47;
 @item-list-green-border: #9ABC32;
 @item-list-green2-border: #0490A6;
-@item-list-blue-border:@btn-info-hover;
+@item-list-blue-border: @btn-info-hover;
 @item-list-blue2-border: #3983C2;
 @item-list-blue3-border: #1144EB;
 @item-list-pink-border: #CB6FD7;
 @item-list-purple-border: #6F3CC4;
 @item-list-black-border: #505050;
 @item-list-grey-border: #A0A0A0;
-@item-list-brown-border:brown;
-@item-list-default-border:@btn-default;
+@item-list-brown-border: brown;
+@item-list-default-border: @btn-default;
 
 
 

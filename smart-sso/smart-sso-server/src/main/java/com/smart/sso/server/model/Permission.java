@@ -7,117 +7,157 @@ import com.smart.mvc.model.PersistentObject;
 
 /**
  * 权限
- * 
+ *
  * @author Joe
  */
-public class Permission extends PersistentObject {
+public class Permission extends PersistentObject
+{
 
-	private static final long serialVersionUID = 4368792338865943489L;
+    private static final long serialVersionUID = 4368792338865943489L;
 
-	/** 应用ID */
-	private Integer appId;
-	/** 父ID */
-	private Integer parentId;
-	/** 图标 */
-	@JSONField(serialize = false)
-	private String icon;
-	/** 名称 */
-	private String name;
-	/** 权限URL */
-	@JSONField(serialize = false)
-	private String url;
-	/** 排序 */
-	private Integer sort = Integer.valueOf(1);
-	/** 是否菜单 */
-	private Boolean isMenu;
-	/** 是否启用 */
-	private Boolean isEnable;
-	
-	public Integer getAppId() {
-		return this.appId;
-	}
+    /**
+     * 应用ID
+     */
+    private Integer appId;
+    /**
+     * 父ID
+     */
+    private Integer parentId;
+    /**
+     * 图标
+     */
+    @JSONField(serialize = false)
+    private String icon;
+    /**
+     * 名称
+     */
+    private String name;
+    /**
+     * 权限URL
+     */
+    @JSONField(serialize = false)
+    private String url;
+    /**
+     * 排序
+     */
+    private Integer sort = Integer.valueOf(1);
+    /**
+     * 是否菜单
+     */
+    private Boolean isMenu;
+    /**
+     * 是否启用
+     */
+    private Boolean isEnable;
 
-	public void setAppId(Integer appId) {
-		this.appId = appId;
-	}
+    public Integer getAppId()
+    {
+        return this.appId;
+    }
 
-	public Integer getParentId() {
-		return this.parentId;
-	}
+    public void setAppId(Integer appId)
+    {
+        this.appId = appId;
+    }
 
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
-	}
-	
-	public String getIcon() {
-		return icon;
-	}
+    public Integer getParentId()
+    {
+        return this.parentId;
+    }
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+    public void setParentId(Integer parentId)
+    {
+        this.parentId = parentId;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getIcon()
+    {
+        return icon;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getUrl() {
-		return url;
-	}
+    public void setIcon(String icon)
+    {
+        this.icon = icon;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getName()
+    {
+        return this.name;
+    }
 
-	public Integer getSort() {
-		return this.sort;
-	}
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
+    public String getUrl()
+    {
+        return url;
+    }
 
-	public Boolean getIsMenu() {
-		return this.isMenu;
-	}
+    public void setUrl(String url)
+    {
+        this.url = url;
+    }
 
-	public void setIsMenu(Boolean isMenu) {
-		this.isMenu = isMenu;
-	}
+    public Integer getSort()
+    {
+        return this.sort;
+    }
 
-	public Boolean getIsEnable() {
-		return this.isEnable;
-	}
+    public void setSort(Integer sort)
+    {
+        this.sort = sort;
+    }
 
-	public void setIsEnable(Boolean isEnable) {
-		this.isEnable = isEnable;
-	}
-	
-	public String getUrlStr() {
-		return url;
-	}
-	
-	public String getPermissionIcon() {
-		return icon;
-	}
+    public Boolean getIsMenu()
+    {
+        return this.isMenu;
+    }
 
-	@Transient
-	public Integer getPId() {
-		return this.parentId;
-	}
-	
-	/** 以下为显示辅助参数 */
-	private boolean checked = false;
+    public void setIsMenu(Boolean isMenu)
+    {
+        this.isMenu = isMenu;
+    }
 
-	public boolean isChecked() {
-		return checked;
-	}
+    public Boolean getIsEnable()
+    {
+        return this.isEnable;
+    }
 
-	public void setChecked(boolean checked) {
-		this.checked = checked;
-	}
+    public void setIsEnable(Boolean isEnable)
+    {
+        this.isEnable = isEnable;
+    }
+
+    public String getUrlStr()
+    {
+        return url;
+    }
+
+    public String getPermissionIcon()
+    {
+        return icon;
+    }
+
+    @Transient
+    public Integer getPId()
+    {
+        return this.parentId;
+    }
+
+    /**
+     * 以下为显示辅助参数
+     */
+    private boolean checked = false;
+
+    public boolean isChecked()
+    {
+        return checked;
+    }
+
+    public void setChecked(boolean checked)
+    {
+        this.checked = checked;
+    }
 }

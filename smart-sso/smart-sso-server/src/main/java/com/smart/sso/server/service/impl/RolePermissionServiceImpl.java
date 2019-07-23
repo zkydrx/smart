@@ -20,51 +20,59 @@ import com.smart.sso.server.service.RolePermissionService;
 import com.smart.sso.server.service.RoleService;
 
 @Service("rolePermissionService")
-public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionDao, RolePermission, Integer> implements RolePermissionService {
-	
-	@Resource
-	private RoleService roleService;
-	@Resource
-	private AppService appService;
-	@Resource
-	private PermissionJmsService permissionJmsService;
+public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionDao, RolePermission, Integer> implements RolePermissionService
+{
 
-	@Autowired
-	public void setDao(RolePermissionDao dao) {
-		this.dao = dao;
-	}
+    @Resource
+    private RoleService roleService;
+    @Resource
+    private AppService appService;
+    @Resource
+    private PermissionJmsService permissionJmsService;
 
-	@Transactional
-	public void allocate(Integer appId, Integer roleId, List<Integer> permissionIdList) {
-		dao.deleteByAppAndRoleId(appId, roleId);
+    @Autowired
+    public void setDao(RolePermissionDao dao)
+    {
+        this.dao = dao;
+    }
 
-		List<RolePermission> list = new ArrayList<RolePermission>();
-		Integer permissionId;
-		for (Iterator<Integer> i$ = permissionIdList.iterator(); i$.hasNext(); list
-				.add(new RolePermission(appId, roleId, permissionId))) {
-			permissionId = i$.next();
-		}
-		if (!CollectionUtils.isEmpty(list)) {
-			super.save(list);
-		}
+    @Transactional
+    public void allocate(Integer appId, Integer roleId, List<Integer> permissionIdList)
+    {
+        dao.deleteByAppAndRoleId(appId, roleId);
 
-		// JMS通知权限变更
-		permissionJmsService.send(appService.get(appId).getCode());
-	}
+        List<RolePermission> list = new ArrayList<RolePermission>();
+        Integer permissionId;
+        for (Iterator<Integer> i$ = permissionIdList.iterator(); i$.hasNext(); list.add(new RolePermission(appId, roleId, permissionId)))
+        {
+            permissionId = i$.next();
+        }
+        if (!CollectionUtils.isEmpty(list))
+        {
+            super.save(list);
+        }
 
-	public List<RolePermission> findByRoleId(Integer roleId) {
-		return dao.findByRoleId(roleId);
-	}
+        // JMS通知权限变更
+        permissionJmsService.send(appService.get(appId).getCode());
+    }
 
-	public void deleteByPermissionIds(List<Integer> idList) {
-		dao.deleteByPermissionIds(idList);
-	}
-	
-	public void deleteByRoleIds(List<Integer> idList) {
-		dao.deleteByRoleIds(idList);
-	}
-	
-	public void deleteByAppIds(List<Integer> idList) {
-		dao.deleteByAppIds(idList);
-	}
+    public List<RolePermission> findByRoleId(Integer roleId)
+    {
+        return dao.findByRoleId(roleId);
+    }
+
+    public void deleteByPermissionIds(List<Integer> idList)
+    {
+        dao.deleteByPermissionIds(idList);
+    }
+
+    public void deleteByRoleIds(List<Integer> idList)
+    {
+        dao.deleteByRoleIds(idList);
+    }
+
+    public void deleteByAppIds(List<Integer> idList)
+    {
+        dao.deleteByAppIds(idList);
+    }
 }

@@ -25,29 +25,31 @@ import io.swagger.annotations.ApiParam;
 @Api(tags = "用户角色关系管理")
 @Controller
 @RequestMapping("/admin/rolePermission")
-public class RolePermissionController extends BaseController {
+public class RolePermissionController extends BaseController
+{
 
-	@Resource
-	private AppService appService;
-	@Resource
-	private RolePermissionService rolePermissionService;
+    @Resource
+    private AppService appService;
+    @Resource
+    private RolePermissionService rolePermissionService;
 
-	@ApiOperation("初始页")
-	@RequestMapping(method = RequestMethod.GET)
-	public String edit(
-			@ApiParam(value = "角色id", required = true) @ValidateParam({ Validator.NOT_BLANK }) Integer roleId, Model model) {
-		model.addAttribute("roleId", roleId);
-		model.addAttribute("appList", appService.findByAll(true));
-		return "/admin/rolePermission";
-	}
-	
-	@ApiOperation("角色授权提交")
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody Result save(
-			@ApiParam(value = "应用id", required = true) @ValidateParam({ Validator.NOT_BLANK }) Integer appId,
-			@ApiParam(value = "角色id", required = true) @ValidateParam({ Validator.NOT_BLANK }) Integer roleId,
-			@ApiParam(value = "权限ids") String permissionIds) {
-		rolePermissionService.allocate(appId, roleId, getAjaxIds(permissionIds));
-		return Result.createSuccessResult().setMessage("授权成功");
-	}
+    @ApiOperation("初始页")
+    @RequestMapping(method = RequestMethod.GET)
+    public String edit(@ApiParam(value = "角色id", required = true) @ValidateParam({Validator.NOT_BLANK}) Integer roleId, Model model)
+    {
+        model.addAttribute("roleId", roleId);
+        model.addAttribute("appList", appService.findByAll(true));
+        return "/admin/rolePermission";
+    }
+
+    @ApiOperation("角色授权提交")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public @ResponseBody
+    Result save(@ApiParam(value = "应用id", required = true) @ValidateParam({Validator.NOT_BLANK}) Integer appId,
+                @ApiParam(value = "角色id", required = true) @ValidateParam({Validator.NOT_BLANK}) Integer roleId,
+                @ApiParam(value = "权限ids") String permissionIds)
+    {
+        rolePermissionService.allocate(appId, roleId, getAjaxIds(permissionIds));
+        return Result.createSuccessResult().setMessage("授权成功");
+    }
 }

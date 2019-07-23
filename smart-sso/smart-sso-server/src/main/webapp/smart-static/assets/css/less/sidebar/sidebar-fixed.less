@@ -1,39 +1,40 @@
 .sidebar.sidebar-fixed {
-	position: fixed;
-	top: auto;
-	float: none !important;
-	
-	z-index: @zindex-sidebar-fixed;//???!
-	
-	&:before {
-		height: 5000px;
-		top: auto;
-		bottom: auto;
-	}
+  position: fixed;
+  top: auto;
+  float: none !important;
+
+  z-index: @zindex-sidebar-fixed; //???!
+
+  &:before {
+    height: 5000px;
+    top: auto;
+    bottom: auto;
+  }
 }
 
- //android's default browser has a problem with "top: auto" when fixed
- body.mob-safari {
-	 .sidebar.sidebar-fixed {
-		top: @navbar-min-height;
-	 }
-	 @media (max-width: @screen-topbar-down) {
-		.navbar-fixed-top:not(.navbar-collapse) + .main-container .sidebar-fixed {
-			top: (@navbar-min-height * 2);
-		}
-	 }
-	 //also when .navbar is fixed, .responsive sidebar becomes automatically fixed
-	 @media (max-width: @grid-float-breakpoint-max) {
-		.navbar-fixed-top + .main-container .sidebar.responsive {
-			top: @navbar-min-height;
-		}
-	 }
-	 @media (max-width: @screen-topbar-down) {
-		.navbar-fixed-top + .main-container .sidebar.responsive {
-			top: (@navbar-min-height * 2);
-		}
-	 }
- }
+//android's default browser has a problem with "top: auto" when fixed
+body.mob-safari {
+  .sidebar.sidebar-fixed {
+    top: @navbar-min-height;
+  }
+
+  @media (max-width: @screen-topbar-down) {
+    .navbar-fixed-top:not(.navbar-collapse) + .main-container .sidebar-fixed {
+      top: (@navbar-min-height * 2);
+    }
+  }
+  //also when .navbar is fixed, .responsive sidebar becomes automatically fixed
+  @media (max-width: @grid-float-breakpoint-max) {
+    .navbar-fixed-top + .main-container .sidebar.responsive {
+      top: @navbar-min-height;
+    }
+  }
+  @media (max-width: @screen-topbar-down) {
+    .navbar-fixed-top + .main-container .sidebar.responsive {
+      top: (@navbar-min-height * 2);
+    }
+  }
+}
 
 /**
 //http://updates.html5rocks.com/2012/09/Stacking-Changes-Coming-to-position-fixed-elements
@@ -69,59 +70,60 @@
 */
 
 
-
-
 //************************************************************************************
 //remove the following to disable fixed sidebar (style1 - default) on smaller devices
 //if you also want to disable fixed breadcrumbs on smalelr devices, refer to breadcrumbs.less
 
 @media only screen and (max-width: @grid-float-breakpoint-max) {
- .responsive.sidebar-fixed {
-	left: auto;
-	margin-left: auto;
- }
+  .responsive.sidebar-fixed {
+    left: auto;
+    margin-left: auto;
+  }
 
- //if `.menu-toggler` button is inside `fixed .navbar` let sidebar become fixed as well
- .navbar-fixed-top + .main-container > .responsive {
-	position: fixed;
-	left: auto;
-	margin-left: auto;
-	//-moz-backface-visibility: hidden;
- }
- //but if `.menu-toggler` button is inside .main-container, then `fixed .navbar` should have no effect
- .navbar-fixed-top + .main-container > .menu-toggler + .responsive {
-	position: absolute;
-	left: (@sidebar-width);
-	margin-left: -(@sidebar-width);
-	//-moz-backface-visibility: visible;
- }
- //unless specified as fixed
- .navbar-fixed-top + .main-container > .menu-toggler + .responsive.sidebar-fixed {
- 	position: fixed;
-	left: auto;
-	margin-left: auto;
-	//-moz-backface-visibility: hidden;
- }
+  //if `.menu-toggler` button is inside `fixed .navbar` let sidebar become fixed as well
+  .navbar-fixed-top + .main-container > .responsive {
+    position: fixed;
+    left: auto;
+    margin-left: auto;
+    //-moz-backface-visibility: hidden;
+  }
+
+  //but if `.menu-toggler` button is inside .main-container, then `fixed .navbar` should have no effect
+  .navbar-fixed-top + .main-container > .menu-toggler + .responsive {
+    position: absolute;
+    left: (@sidebar-width);
+    margin-left: -(@sidebar-width);
+    //-moz-backface-visibility: visible;
+  }
+
+  //unless specified as fixed
+  .navbar-fixed-top + .main-container > .menu-toggler + .responsive.sidebar-fixed {
+    position: fixed;
+    left: auto;
+    margin-left: auto;
+    //-moz-backface-visibility: hidden;
+  }
 }
 
 @media only screen and (max-width: @grid-float-breakpoint-max) {
- .sidebar.responsive.sidebar-fixed {
- 		position: fixed;
-		left: auto;
-		margin-left: auto;
- }
- .main-container .menu-toggler.fixed {
-	position: fixed;
-	left: auto;
-	z-index: @zindex-sidebar-fixed - 1;
-	//-moz-backface-visibility: hidden;
- }
- 
- //for responsive style # 2
- //becuase ".sidebar.responsive-max" is "position: relative" & "margin-left: -190px"
- .sidebar.sidebar-fixed.responsive-max {
-	position: fixed;
-	left: auto;
-	margin-left: auto;
- }
+  .sidebar.responsive.sidebar-fixed {
+    position: fixed;
+    left: auto;
+    margin-left: auto;
+  }
+
+  .main-container .menu-toggler.fixed {
+    position: fixed;
+    left: auto;
+    z-index: @zindex-sidebar-fixed - 1;
+    //-moz-backface-visibility: hidden;
+  }
+
+  //for responsive style # 2
+  //becuase ".sidebar.responsive-max" is "position: relative" & "margin-left: -190px"
+  .sidebar.sidebar-fixed.responsive-max {
+    position: fixed;
+    left: auto;
+    margin-left: auto;
+  }
 }

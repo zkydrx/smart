@@ -16,16 +16,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
-public class SwaggerConfig extends WebMvcConfigurerAdapter {
-	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any()).build().apiInfo(apiInfo());
-	}
+public class SwaggerConfig extends WebMvcConfigurerAdapter
+{
+    @Bean
+    public Docket api()
+    {
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build().apiInfo(apiInfo());
+    }
 
-	private ApiInfo apiInfo() {
-		ApiInfo apiInfo = new ApiInfoBuilder().title("Api Documentation").description("Api Documentation")
-				.version("1.0").build();
-		return apiInfo;
-	}
+    private ApiInfo apiInfo()
+    {
+        ApiInfo apiInfo = new ApiInfoBuilder().title("Api Documentation").description("Api Documentation").version("1.0").build();
+        return apiInfo;
+    }
 }

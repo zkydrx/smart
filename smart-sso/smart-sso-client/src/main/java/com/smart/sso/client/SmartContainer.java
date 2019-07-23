@@ -21,85 +21,101 @@ import com.smart.sso.rpc.AuthenticationRpcService;
 
 /**
  * Smart容器中心
- * 
+ *
  * @author Joe
  */
-public class SmartContainer extends ParamFilter implements Filter {
-	
-	// 是否服务端，默认为false
-	private boolean isServer = false;
+public class SmartContainer extends ParamFilter implements Filter
+{
 
-	private ClientFilter[] filters;
+    // 是否服务端，默认为false
+    private boolean isServer = false;
 
-	private PathMatcher pathMatcher = new AntPathMatcher();
+    private ClientFilter[] filters;
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-		if(isServer) {
-			ssoServerUrl = filterConfig.getServletContext().getContextPath();
-		}
-		else if (StringUtils.isEmpty(ssoServerUrl)) {
-			throw new IllegalArgumentException("ssoServerUrl不能为空");
-		}
+    private PathMatcher pathMatcher = new AntPathMatcher();
 
-		if (authenticationRpcService == null) {
-			try {
-				authenticationRpcService = (AuthenticationRpcService) new HessianProxyFactory()
-						.create(AuthenticationRpcService.class, ssoServerUrl + "/rpc/authenticationRpcService");
-			}
-			catch (MalformedURLException e) {
-				throw new IllegalArgumentException("authenticationRpcService初始化失败");
-			}
-		}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException
+    {
 
-		if (filters == null || filters.length == 0) {
-			throw new IllegalArgumentException("filters不能为空");
-		}
-		for (ClientFilter filter : filters) {
-			filter.setSsoServerUrl(ssoServerUrl);
-			filter.setAuthenticationRpcService(authenticationRpcService);
+        if (isServer)
+        {
+            ssoServerUrl = filterConfig.getServletContext().getContextPath();
+        }
+        else if (StringUtils.isEmpty(ssoServerUrl))
+        {
+            throw new IllegalArgumentException("ssoServerUrl不能为空");
+        }
 
-			filter.init(filterConfig);
-		}
-	}
+        if (authenticationRpcService == null)
+        {
+            try
+            {
+                authenticationRpcService = (AuthenticationRpcService) new HessianProxyFactory().create(AuthenticationRpcService.class,
+                                                                                                       ssoServerUrl + "/rpc/authenticationRpcService");
+            }
+            catch (MalformedURLException e)
+            {
+                throw new IllegalArgumentException("authenticationRpcService初始化失败");
+            }
+        }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		for (ClientFilter filter : filters) {
-			if (matchPath(filter.getPattern(), httpRequest.getServletPath())
-					&& !filter.isAccessAllowed(httpRequest, httpResponse)) {
-				return;
-			}
-		}
-		chain.doFilter(request, response);
-	}
+        if (filters == null || filters.length == 0)
+        {
+            throw new IllegalArgumentException("filters不能为空");
+        }
+        for (ClientFilter filter : filters)
+        {
+            filter.setSsoServerUrl(ssoServerUrl);
+            filter.setAuthenticationRpcService(authenticationRpcService);
 
-	private boolean matchPath(String pattern, String path) {
-		return StringUtils.isEmpty(pattern) || pathMatcher.match(pattern, path);
-	}
-	
-	public void setIsServer(boolean isServer) {
-		this.isServer = isServer;
-	}
+            filter.init(filterConfig);
+        }
+    }
 
-	@Override
-	public void destroy() {
-		if (filters == null || filters.length == 0)
-			return;
-		for (ClientFilter filter : filters) {
-			filter.destroy();
-		}
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
+    {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        for (ClientFilter filter : filters)
+        {
+            if (matchPath(filter.getPattern(), httpRequest.getServletPath()) && !filter.isAccessAllowed(httpRequest, httpResponse))
+            {
+                return;
+            }
+        }
+        chain.doFilter(request, response);
+    }
 
-	public void setFilters(ClientFilter[] filters) {
-		this.filters = filters;
-	}
+    private boolean matchPath(String pattern, String path)
+    {
+        return StringUtils.isEmpty(pattern) || pathMatcher.match(pattern, path);
+    }
 
-	public ClientFilter[] getFilters() {
-		return filters;
-	}
+    public void setIsServer(boolean isServer)
+    {
+        this.isServer = isServer;
+    }
+
+    @Override
+    public void destroy()
+    {
+        if (filters == null || filters.length == 0)
+            return;
+        for (ClientFilter filter : filters)
+        {
+            filter.destroy();
+        }
+    }
+
+    public void setFilters(ClientFilter[] filters)
+    {
+        this.filters = filters;
+    }
+
+    public ClientFilter[] getFilters()
+    {
+        return filters;
+    }
 }

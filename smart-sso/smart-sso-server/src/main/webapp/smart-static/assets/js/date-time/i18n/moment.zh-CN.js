@@ -32,7 +32,7 @@ moment.lang('zh-CN', {
 
     },
 
-    meridiem: function(hour, minute, isLower) {
+    meridiem: function (hour, minute, isLower) {
 
         if (hour < 9) {
 

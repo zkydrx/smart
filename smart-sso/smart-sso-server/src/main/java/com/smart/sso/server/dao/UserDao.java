@@ -10,17 +10,17 @@ import com.smart.sso.server.model.User;
 
 /**
  * 用户持久化接口
- * 
+ *
  * @author Joe
  */
-public interface UserDao extends Dao<User, Integer> {
-	
-	public int enable(@Param("isEnable") Boolean isEnable, @Param("idList") List<Integer> idList);
-	
-	public int resetPassword(@Param("password") String password, @Param("idList") List<Integer> idList);
+public interface UserDao extends Dao<User, Integer>
+{
 
-	public List<User> findPagination(@Param("account") String account, @Param("name") String name,
-			@Param("officeIdList") List<Integer> officeIdList, Pagination<User> p);
-	
-	public User findByAccount(@Param("account") String account);
+    public int enable(@Param("isEnable") Boolean isEnable, @Param("idList") List<Integer> idList);
+
+    public int resetPassword(@Param("password") String password, @Param("idList") List<Integer> idList);
+
+    public List<User> findPagination(@Param("account") String account, @Param("name") String name, @Param("officeIdList") List<Integer> officeIdList, Pagination<User> p);
+
+    public User findByAccount(@Param("account") String account);
 }

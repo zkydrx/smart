@@ -8,62 +8,72 @@ import org.springframework.util.Base64Utils;
 
 /**
  * 对称加密(AES)
- * 
+ *
  * @author Joe
  */
-public class AESUtils {
-	
-	public static final String INIT_VECTOR = "RandomInitVector";
+public class AESUtils
+{
 
-	/**
-	 * 加密
-	 * @param key 密钥
-	 * @param value 加密数据
-	 * @return
-	 */
-	public static String encrypt(String key, String value) {
-		try {
-			IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
-			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+    public static final String INIT_VECTOR = "RandomInitVector";
 
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+    /**
+     * 加密
+     *
+     * @param key   密钥
+     * @param value 加密数据
+     * @return
+     */
+    public static String encrypt(String key, String value)
+    {
+        try
+        {
+            IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-			byte[] encrypted = cipher.doFinal(value.getBytes());
-			return Base64Utils.encodeToString(encrypted);
-		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return null;
-	}
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
-	/**
-	 * 解密
-	 * @param key 密钥
-	 * @param value 解密数据
-	 * @return
-	 */
-	public static String decrypt(String key, String encrypted) {
-		try {
-			IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
-			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+            byte[] encrypted = cipher.doFinal(value.getBytes());
+            return Base64Utils.encodeToString(encrypted);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-			byte[] original = cipher.doFinal(Base64Utils.decodeFromString(encrypted));
+    /**
+     * 解密
+     *
+     * @param key   密钥
+     * @param value 解密数据
+     * @return
+     */
+    public static String decrypt(String key, String encrypted)
+    {
+        try
+        {
+            IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-			return new String(original);
-		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return null;
-	}
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+            byte[] original = cipher.doFinal(Base64Utils.decodeFromString(encrypted));
 
-	public static void main(String[] args) {
-		String key = "``11qqaazzxxccvv"; // 128 bit key
-		System.out.println(encrypt(key, "123"));
-		System.out.println(decrypt(key, encrypt(key, "123")));
-	}
+            return new String(original);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void main(String[] args)
+    {
+        String key = "``11qqaazzxxccvv"; // 128 bit key
+        System.out.println(encrypt(key, "123"));
+        System.out.println(decrypt(key, encrypt(key, "123")));
+    }
 }

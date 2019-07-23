@@ -16,50 +16,55 @@ import org.springframework.http.HttpStatus;
 
 /**
  * Filter基类
- * 
+ *
  * @author Joe
  */
-public abstract class ClientFilter extends ParamFilter implements Filter {
-	
-	// 匹配路径（? 匹配1个字符，* 匹配0个或多个字符，** 中的0个或多个目录）
-	protected String pattern;
+public abstract class ClientFilter extends ParamFilter implements Filter
+{
 
-	public abstract boolean isAccessAllowed(HttpServletRequest request, HttpServletResponse response)
-			throws IOException;
+    // 匹配路径（? 匹配1个字符，* 匹配0个或多个字符，** 中的0个或多个目录）
+    protected String pattern;
 
-	protected boolean isAjaxRequest(HttpServletRequest request) {
-		String requestedWith = request.getHeader("X-Requested-With");
-		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
-	}
+    public abstract boolean isAccessAllowed(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
-	protected void responseJson(HttpServletResponse response, int code, String message) throws IOException {
-		response.setContentType("application/json;charset=UTF-8");
-		response.setStatus(HttpStatus.OK.value());
-		PrintWriter writer = response.getWriter();
-		writer.write(new StringBuilder().append("{\"code\":").append(code).append(",\"message\":\"").append(message)
-				.append("\"}").toString());
-		writer.flush();
-		writer.close();
-	}
-	
-	public void setPattern(String pattern) {
-		this.pattern = pattern;
-	}
-	
-	public String getPattern() {
-		return pattern;
-	}
+    protected boolean isAjaxRequest(HttpServletRequest request)
+    {
+        String requestedWith = request.getHeader("X-Requested-With");
+        return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
+    }
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
+    protected void responseJson(HttpServletResponse response, int code, String message) throws IOException
+    {
+        response.setContentType("application/json;charset=UTF-8");
+        response.setStatus(HttpStatus.OK.value());
+        PrintWriter writer = response.getWriter();
+        writer.write(new StringBuilder().append("{\"code\":").append(code).append(",\"message\":\"").append(message).append("\"}").toString());
+        writer.flush();
+        writer.close();
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException {
-	}
+    public void setPattern(String pattern)
+    {
+        this.pattern = pattern;
+    }
 
-	@Override
-	public void destroy() {
-	}
+    public String getPattern()
+    {
+        return pattern;
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException
+    {
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException
+    {
+    }
+
+    @Override
+    public void destroy()
+    {
+    }
 }

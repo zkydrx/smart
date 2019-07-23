@@ -8,107 +8,145 @@ import com.smart.sso.server.enums.TrueFalseEnum;
 
 /**
  * 用户
- * 
+ *
  * @author Joe
  */
-public class User extends PersistentObject {
+public class User extends PersistentObject
+{
 
-	private static final long serialVersionUID = 1106412532325860697L;
-	
-	/** 机构 */
-	private Integer officeId;
-	/** 姓名 */
-	private String name;
-	/** 登录名 */
-	private String account;
-	/** 密码 */
-	private String password;
-	/** 最后登录IP */
-	private String lastLoginIp;
-	/** 登录总次数 */
-	private Integer loginCount = Integer.valueOf(0);
-	/** 最后登录时间 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date lastLoginTime;
-	/** 创建时间 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
-	/** 是否启用 */
-	private Boolean isEnable = Boolean.valueOf(true);
-	
-	public Integer getOfficeId() {
-		return officeId;
-	}
+    private static final long serialVersionUID = 1106412532325860697L;
 
-	public void setOfficeId(Integer officeId) {
-		this.officeId = officeId;
-	}
-	
-	public String getName() {
-		return name;
-	}
+    /**
+     * 机构
+     */
+    private Integer officeId;
+    /**
+     * 姓名
+     */
+    private String name;
+    /**
+     * 登录名
+     */
+    private String account;
+    /**
+     * 密码
+     */
+    private String password;
+    /**
+     * 最后登录IP
+     */
+    private String lastLoginIp;
+    /**
+     * 登录总次数
+     */
+    private Integer loginCount = Integer.valueOf(0);
+    /**
+     * 最后登录时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date lastLoginTime;
+    /**
+     * 创建时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+    /**
+     * 是否启用
+     */
+    private Boolean isEnable = Boolean.valueOf(true);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Integer getOfficeId()
+    {
+        return officeId;
+    }
 
-	public String getAccount() {
-		return account;
-	}
+    public void setOfficeId(Integer officeId)
+    {
+        this.officeId = officeId;
+    }
 
-	public void setAccount(String account) {
-		this.account = account;
-	}
+    public String getName()
+    {
+        return name;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getLastLoginIp() {
-		return lastLoginIp;
-	}
+    public String getAccount()
+    {
+        return account;
+    }
 
-	public void setLastLoginIp(String lastLoginIp) {
-		this.lastLoginIp = lastLoginIp;
-	}
+    public void setAccount(String account)
+    {
+        this.account = account;
+    }
 
-	public Integer getLoginCount() {
-		return loginCount;
-	}
+    public String getPassword()
+    {
+        return password;
+    }
 
-	public void setLoginCount(Integer loginCount) {
-		this.loginCount = loginCount;
-	}
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
 
-	public Date getLastLoginTime() {
-		return lastLoginTime;
-	}
+    public String getLastLoginIp()
+    {
+        return lastLoginIp;
+    }
 
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
+    public void setLastLoginIp(String lastLoginIp)
+    {
+        this.lastLoginIp = lastLoginIp;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public Integer getLoginCount()
+    {
+        return loginCount;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setLoginCount(Integer loginCount)
+    {
+        this.loginCount = loginCount;
+    }
 
-	public Boolean getIsEnable() {
-		return isEnable;
-	}
+    public Date getLastLoginTime()
+    {
+        return lastLoginTime;
+    }
 
-	public void setIsEnable(Boolean isEnable) {
-		this.isEnable = isEnable;
-	}
+    public void setLastLoginTime(Date lastLoginTime)
+    {
+        this.lastLoginTime = lastLoginTime;
+    }
 
-	public String getIsEnableStr() {
-		return (isEnable != null && isEnable) ? TrueFalseEnum.TRUE.getLabel() : TrueFalseEnum.FALSE.getLabel();
-	}
+    public Date getCreateTime()
+    {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime)
+    {
+        this.createTime = createTime;
+    }
+
+    public Boolean getIsEnable()
+    {
+        return isEnable;
+    }
+
+    public void setIsEnable(Boolean isEnable)
+    {
+        this.isEnable = isEnable;
+    }
+
+    public String getIsEnableStr()
+    {
+        return (isEnable != null && isEnable) ? TrueFalseEnum.TRUE.getLabel() : TrueFalseEnum.FALSE.getLabel();
+    }
 }

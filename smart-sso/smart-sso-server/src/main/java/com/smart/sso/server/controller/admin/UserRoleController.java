@@ -31,57 +31,67 @@ import io.swagger.annotations.ApiResponse;
 @Api(tags = "用户角色管理")
 @Controller
 @RequestMapping("/admin/userRole")
-public class UserRoleController extends BaseController {
+public class UserRoleController extends BaseController
+{
 
-	@Resource
-	private UserService userService;
-	@Resource
-	private RoleService roleService;
-	@Resource
-	private UserRoleService userRoleService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private RoleService roleService;
+    @Resource
+    private UserRoleService userRoleService;
 
-	@ApiOperation("初始页")
-	@RequestMapping(method = RequestMethod.GET)
-	public String execute(@ApiParam(value = "userId", required = true) Integer userId, Model model) {
-		model.addAttribute("user", userService.get(userId));
-		model.addAttribute("roleList", getRoleList(userId));
-		return "/admin/userRole";
-	}
+    @ApiOperation("初始页")
+    @RequestMapping(method = RequestMethod.GET)
+    public String execute(@ApiParam(value = "userId", required = true) Integer userId, Model model)
+    {
+        model.addAttribute("user", userService.get(userId));
+        model.addAttribute("roleList", getRoleList(userId));
+        return "/admin/userRole";
+    }
 
-	@ApiOperation("新增/修改提交")
-	@ApiResponse(response = Result.class, code = 200, message = "success")
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody Result save(@ApiParam(value = "userId") Integer userId,
-			@ApiParam(value = "角色ids") String roleIds) {
-		userRoleService.allocate(userId, createUserRoleList(userId, getAjaxIds(roleIds)));
-		return Result.createSuccessResult();
-	}
+    @ApiOperation("新增/修改提交")
+    @ApiResponse(response = Result.class, code = 200, message = "success")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public @ResponseBody
+    Result save(@ApiParam(value = "userId") Integer userId, @ApiParam(value = "角色ids") String roleIds)
+    {
+        userRoleService.allocate(userId, createUserRoleList(userId, getAjaxIds(roleIds)));
+        return Result.createSuccessResult();
+    }
 
-	private List<UserRole> createUserRoleList(Integer userId, List<Integer> roleIdList) {
-		List<UserRole> userRoleList = new ArrayList<UserRole>();
-		UserRole bean;
-		for (Integer roleId : roleIdList) {
-			bean = new UserRole();
-			bean.setUserId(userId);
-			bean.setRoleId(roleId);
-			userRoleList.add(bean);
-		}
-		return userRoleList;
-	}
+    private List<UserRole> createUserRoleList(Integer userId, List<Integer> roleIdList)
+    {
+        List<UserRole> userRoleList = new ArrayList<UserRole>();
+        UserRole bean;
+        for (Integer roleId : roleIdList)
+        {
+            bean = new UserRole();
+            bean.setUserId(userId);
+            bean.setRoleId(roleId);
+            userRoleList.add(bean);
+        }
+        return userRoleList;
+    }
 
-	private List<Role> getRoleList(Integer userId) {
-		List<Role> list = roleService.findByAll(TrueFalseEnum.TRUE.getValue());
-		if (userId != null) {
-			for (Role role : list) {
-				UserRole userRole = userRoleService.findByUserRoleId(userId, role.getId());
-				if (null != userRole) {
-					role.setIsChecked(true);
-				}
-				else {
-					role.setIsChecked(false);
-				}
-			}
-		}
-		return list;
-	}
+    private List<Role> getRoleList(Integer userId)
+    {
+        List<Role> list = roleService.findByAll(TrueFalseEnum.TRUE.getValue());
+        if (userId != null)
+        {
+            for (Role role : list)
+            {
+                UserRole userRole = userRoleService.findByUserRoleId(userId, role.getId());
+                if (null != userRole)
+                {
+                    role.setIsChecked(true);
+                }
+                else
+                {
+                    role.setIsChecked(false);
+                }
+            }
+        }
+        return list;
+    }
 }

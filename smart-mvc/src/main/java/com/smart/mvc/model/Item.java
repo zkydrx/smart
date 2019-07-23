@@ -2,35 +2,42 @@ package com.smart.mvc.model;
 
 /**
  * 键值对存储模型
- * 
+ *
  * @author Joe
  */
-public class Item implements Itemable {
-	
-	private String label;
-	private Object value;
+public class Item implements Itemable
+{
 
-	public Item() {
-	}
+    private String label;
+    private Object value;
 
-	public Item(String label, Object value) {
-		this.label = label;
-		this.value = value;
-	}
+    public Item()
+    {
+    }
 
-	public String getLabel() {
-		return label;
-	}
+    public Item(String label, Object value)
+    {
+        this.label = label;
+        this.value = value;
+    }
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    public String getLabel()
+    {
+        return label;
+    }
 
-	public Object getValue() {
-		return value;
-	}
+    public void setLabel(String label)
+    {
+        this.label = label;
+    }
 
-	public void setValue(Object value) {
-		this.value = value;
-	}
+    public Object getValue()
+    {
+        return value;
+    }
+
+    public void setValue(Object value)
+    {
+        this.value = value;
+    }
 }
